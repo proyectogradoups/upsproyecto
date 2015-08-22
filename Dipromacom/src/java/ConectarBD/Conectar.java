@@ -1,6 +1,7 @@
 package ConectarBD;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -80,16 +81,25 @@ public class Conectar {
     
     
     public static void main(String[] args) {
-        
+        PreparedStatement ps;
         try { 
             Conectar con = new Conectar();
             con.crearConexion();
-            String sentencia ="SELECT * FROM bd_dipromacom.tdi_clientes";
-            ResultSet rs = con.ejecutarSQLSelect(sentencia);         
-            while (rs.next()){
+            //String sentencia ="SELECT * FROM bd_dipromacom.tdi_clientes";
+            String sentencia ="INSERT INTO bd_dipromacom.tdi_marcas(mar_descripcion, mar_estado) VALUES(?,?)";
+            
+            //ResultSet rs = con.ejecutarSQLSelect(sentencia);         
+            
+           /* while (rs.next()){
                 System.out.println(rs.getString("cli_nombre"));
                 
-            }
+            }*/
+            
+            ps = con.conexion.prepareStatement(sentencia);
+            ps.setString(1, "desc2");
+            ps.setBoolean(2, true);
+            ps.executeUpdate();
+            con.conexion.close();
         } catch (SQLException ex) {
             Logger.getLogger(Conectar.class.getName()).log(Level.SEVERE, null, ex);
         }
