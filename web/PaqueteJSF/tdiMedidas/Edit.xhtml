@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTdiMedidasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTdiMedidasLabel_medId}" for="medId" />
+                    <h:inputText id="medId" value="#{tdiMedidasController.selected.medId}" title="#{bundle.EditTdiMedidasTitle_medId}" required="true" requiredMessage="#{bundle.EditTdiMedidasRequiredMessage_medId}"/>
+                    <h:outputLabel value="#{bundle.EditTdiMedidasLabel_medDescripcion}" for="medDescripcion" />
+                    <h:inputText id="medDescripcion" value="#{tdiMedidasController.selected.medDescripcion}" title="#{bundle.EditTdiMedidasTitle_medDescripcion}" />
+                    <h:outputLabel value="#{bundle.EditTdiMedidasLabel_medSiglas}" for="medSiglas" />
+                    <h:inputText id="medSiglas" value="#{tdiMedidasController.selected.medSiglas}" title="#{bundle.EditTdiMedidasTitle_medSiglas}" />
+                    <h:outputLabel value="#{bundle.EditTdiMedidasLabel_medUnidades}" for="medUnidades" />
+                    <h:inputText id="medUnidades" value="#{tdiMedidasController.selected.medUnidades}" title="#{bundle.EditTdiMedidasTitle_medUnidades}" />
+                    <h:outputLabel value="#{bundle.EditTdiMedidasLabel_medFraccion}" for="medFraccion" />
+                    <h:inputText id="medFraccion" value="#{tdiMedidasController.selected.medFraccion}" title="#{bundle.EditTdiMedidasTitle_medFraccion}" />
+                    <h:outputLabel value="#{bundle.EditTdiMedidasLabel_medEstado}" for="medEstado" />
+                    <h:inputText id="medEstado" value="#{tdiMedidasController.selected.medEstado}" title="#{bundle.EditTdiMedidasTitle_medEstado}" />
+                </h:panelGrid> <!-- creamos la accion para actualizar la medida -->
+                <h:commandLink action="#{tdiMedidasController.update}" value="#{bundle.EditTdiMedidasSaveLink} (alt+g)" accesskey="g"/>
+                <br />
+                <!-- creamos la accion para preparar procesos -->
+                <h:commandLink action="#{tdiMedidasController.prepareList}" value="#{bundle.EditTdiMedidasShowAllLink}" accesskey="l" immediate="true" style="display: none"/>
+                <h:link outcome="View" value="#{bundle.EditTdiMedidasViewLink}" accesskey="v"  style="display: none"/>
+                <h:link outcome="/index" value="#{bundle.EditTdiMedidasIndexLink}" accesskey="i" style="display: none"/>
+            </h:form>
+        </ui:define>
+        
+         <!--  Definimos el faceletsoutcome="View" value="#{bundle.EditTdiMedidasViewLink}"  del menu a utilizar en nuestro template  -->
+        <ui:define name="Menu">
+            <h:form styleClass="jsfcrud_list_form">
+                <p:menu>
+                    <p:submenu label="Opciones">
+                        <p:menuitem outcome="View" value="#{bundle.EditTdiMedidasViewLink} (alt+v)" />
+                        <p:menuitem action="#{tdiMedidasController.prepareList}" value="#{bundle.EditTdiMedidasShowAllLink} (alt+l)" immediate="true"/>
+                        <p:menuitem outcome="/index" value="#{bundle.EditTdiMedidasIndexLink} (alt+i)" />
+                    </p:submenu>
+
+                </p:menu>  
+            </h:form>
+        </ui:define> 
+    </ui:composition>
+
+</html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTdiProveedoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTdiProveedoresEmpty}" rendered="#{tdiProveedoresController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tdiProveedoresController.items.rowCount > 0}">
+                    <h:outputText value="#{tdiProveedoresController.pagination.pageFirstItem + 1}..#{tdiProveedoresController.pagination.pageLastItem + 1}/#{tdiProveedoresController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tdiProveedoresController.previous}" value="#{bundle.Previous} #{tdiProveedoresController.pagination.pageSize}" rendered="#{tdiProveedoresController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tdiProveedoresController.next}" value="#{bundle.Next} #{tdiProveedoresController.pagination.pageSize}" rendered="#{tdiProveedoresController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tdiProveedoresController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveContable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveContable}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveNombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveNombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveAlias}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveAlias}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveCedula}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveCedula}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveDireccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveDireccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveTelefonos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveTelefonos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveTipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveTipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveEstado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveEspecial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveEspecial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveProveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveProveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveFecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTdiProveedoresTitle_proveNacional}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveNacional}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tdiProveedoresController.prepareView}" value="#{bundle.ListTdiProveedoresViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tdiProveedoresController.prepareEdit}" value="#{bundle.ListTdiProveedoresEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tdiProveedoresController.destroy}" value="#{bundle.ListTdiProveedoresDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tdiProveedoresController.prepareCreate}" value="#{bundle.ListTdiProveedoresCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTdiProveedoresIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTdiProveedoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveContable}" for="proveContable" />
+                    <h:inputText id="proveContable" value="#{tdiProveedoresController.selected.proveContable}" title="#{bundle.CreateTdiProveedoresTitle_proveContable}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveNombre}" for="proveNombre" />
+                    <h:inputText id="proveNombre" value="#{tdiProveedoresController.selected.proveNombre}" title="#{bundle.CreateTdiProveedoresTitle_proveNombre}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveAlias}" for="proveAlias" />
+                    <h:inputText id="proveAlias" value="#{tdiProveedoresController.selected.proveAlias}" title="#{bundle.CreateTdiProveedoresTitle_proveAlias}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveCedula}" for="proveCedula" />
+                    <h:inputText id="proveCedula" value="#{tdiProveedoresController.selected.proveCedula}" title="#{bundle.CreateTdiProveedoresTitle_proveCedula}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveDireccion}" for="proveDireccion" />
+                    <h:inputText id="proveDireccion" value="#{tdiProveedoresController.selected.proveDireccion}" title="#{bundle.CreateTdiProveedoresTitle_proveDireccion}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveTelefonos}" for="proveTelefonos" />
+                    <h:inputText id="proveTelefonos" value="#{tdiProveedoresController.selected.proveTelefonos}" title="#{bundle.CreateTdiProveedoresTitle_proveTelefonos}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveTipo}" for="proveTipo" />
+                    <h:inputText id="proveTipo" value="#{tdiProveedoresController.selected.proveTipo}" title="#{bundle.CreateTdiProveedoresTitle_proveTipo}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveEstado}" for="proveEstado" />
+                    <h:inputText id="proveEstado" value="#{tdiProveedoresController.selected.proveEstado}" title="#{bundle.CreateTdiProveedoresTitle_proveEstado}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveEspecial}" for="proveEspecial" />
+                    <h:inputText id="proveEspecial" value="#{tdiProveedoresController.selected.proveEspecial}" title="#{bundle.CreateTdiProveedoresTitle_proveEspecial}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveProveedor}" for="proveProveedor" />
+                    <h:inputText id="proveProveedor" value="#{tdiProveedoresController.selected.proveProveedor}" title="#{bundle.CreateTdiProveedoresTitle_proveProveedor}" />
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveFecha}" for="proveFecha" />
+                    <h:inputText id="proveFecha" value="#{tdiProveedoresController.selected.proveFecha}" title="#{bundle.CreateTdiProveedoresTitle_proveFecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTdiProveedoresLabel_proveNacional}" for="proveNacional" />
+                    <h:inputText id="proveNacional" value="#{tdiProveedoresController.selected.proveNacional}" title="#{bundle.CreateTdiProveedoresTitle_proveNacional}" />
+                </h:panelGrid>
+                <br /> <!-- creamos la accion para ingresar proveedos -->
+                <h:commandLink action="#{tdiProveedoresController.create}" value="#{bundle.CreateTdiProveedoresSaveLink} (alt+g)" accesskey="g" />
+                <br />
+                <br /> <!-- creamos las acciones para preparar los procesos -->
+                <h:commandLink action="#{tdiProveedoresController.prepareList}" value="#{bundle.CreateTdiProveedoresShowAllLink}" immediate="true" accesskey="l" style="display: none"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTdiProveedoresIndexLink}" accesskey="i" style="display: none"/>
+            </h:form>
+        </ui:define>
+        
+         <!--  Definimos el facelets del menu a utilizar en nuestro template  -->
+        <ui:define name="Menu">
+            <h:form >
+                <p:menu>
+                    <p:submenu label="Opciones">
+                        <p:menuitem action="#{tdiProveedoresController.prepareList}" value="#{bundle.CreateTdiProveedoresShowAllLink} (alt+l)"  immediate="true"/>
+                        <p:menuitem outcome="/index" value="#{bundle.CreateTdiProveedoresIndexLink} (alt+i)"/>
+                    </p:submenu>
+
+                </p:menu>  
+            </h:form>
+        </ui:define> 
+    </ui:composition>
+
+</html>

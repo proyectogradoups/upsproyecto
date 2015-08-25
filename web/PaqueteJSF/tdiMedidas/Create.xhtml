@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTdiMedidasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTdiMedidasLabel_medDescripcion}" for="medDescripcion" />
+                    <h:inputText id="medDescripcion" value="#{tdiMedidasController.selected.medDescripcion}" title="#{bundle.CreateTdiMedidasTitle_medDescripcion}" />
+                    <h:outputLabel value="#{bundle.CreateTdiMedidasLabel_medSiglas}" for="medSiglas" />
+                    <h:inputText id="medSiglas" value="#{tdiMedidasController.selected.medSiglas}" title="#{bundle.CreateTdiMedidasTitle_medSiglas}" />
+                    <h:outputLabel value="#{bundle.CreateTdiMedidasLabel_medUnidades}" for="medUnidades" />
+                    <h:inputText id="medUnidades" value="#{tdiMedidasController.selected.medUnidades}" title="#{bundle.CreateTdiMedidasTitle_medUnidades}" />
+                    <h:outputLabel value="#{bundle.CreateTdiMedidasLabel_medFraccion}" for="medFraccion" />
+                    <h:inputText id="medFraccion" value="#{tdiMedidasController.selected.medFraccion}" title="#{bundle.CreateTdiMedidasTitle_medFraccion}" />
+                    <h:outputLabel value="#{bundle.CreateTdiMedidasLabel_medEstado}" for="medEstado" />
+                    <h:inputText id="medEstado" value="#{tdiMedidasController.selected.medEstado}" title="#{bundle.CreateTdiMedidasTitle_medEstado}" />
+                </h:panelGrid>
+                <br /> <!-- creamos ka accuon para ingresar la medida -->
+                <h:commandLink action="#{tdiMedidasController.create}" value="#{bundle.CreateTdiMedidasSaveLink} (alt+g)" accesskey="g" />
+                <br />
+                <br /><!-- creamos la accion para preparar el proceso -->
+                <h:commandLink action="#{tdiMedidasController.prepareList}" value="#{bundle.CreateTdiMedidasShowAllLink} (alt+l)" accesskey="l" immediate="true" style="display: none"/>
+                <h:link outcome="/index" value="#{bundle.CreateTdiMedidasIndexLink}" accesskey="i" style="display: none" />
+            </h:form>
+        </ui:define>
+        
+        <!--  Definimos el facelets del menu a utilizar en nuestro template  -->
+        <ui:define name="Menu">
+            <h:form >
+                <p:menu>
+                    <p:submenu label="Opciones">
+                        <p:menuitem action="#{tdiMedidasController.prepareList}" value="#{bundle.CreateTdiMedidasShowAllLink} (alt+l)"  immediate="true"/>
+                        <p:menuitem outcome="/index" value="#{bundle.CreateTdiMedidasIndexLink} (alt+i)"/>
+                    </p:submenu>
+
+                </p:menu>  
+            </h:form>
+        </ui:define> 
+    </ui:composition>
+
+</html>

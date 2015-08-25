@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <!--
+    En nuestro template colocaremos los facelest definidos en sus respectivas posiciones
+    -->
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                 <!-- colocamos el facelet correspondiente al titulo -->
+                <title><ui:insert name="title">Default Title</ui:insert></title>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+            </f:facet>
+
+        </h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <h1>
+                         <!-- colocamos el facelet correspondiente al titulo -->
+                        <ui:insert name="title">Default Title</ui:insert>
+                    </h1>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                     <!-- colocamos el facelet correspondiente al pie de página -->
+                    Foot
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Ocultar" collapsible="true">
+                     <!-- colocamos el facelet correspondiente al menu -->
+                    <ui:insert name="Menu">Default Menu</ui:insert>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+
+                    <p>
+                        <ui:insert name="body">Default Body</ui:insert>
+                    </p>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+    </f:view>
+</html>

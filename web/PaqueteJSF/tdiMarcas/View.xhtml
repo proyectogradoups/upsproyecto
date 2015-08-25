@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTdiMarcasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTdiMarcasLabel_marId}"/>
+                    <h:outputText value="#{tdiMarcasController.selected.marId}" title="#{bundle.ViewTdiMarcasTitle_marId}"/>
+                    <h:outputText value="#{bundle.ViewTdiMarcasLabel_marDescripcion}"/>
+                    <h:outputText value="#{tdiMarcasController.selected.marDescripcion}" title="#{bundle.ViewTdiMarcasTitle_marDescripcion}"/>
+                    <h:outputText value="#{bundle.ViewTdiMarcasLabel_marEstado}"/>
+                    <h:outputText value="#{tdiMarcasController.selected.marEstado}" title="#{bundle.ViewTdiMarcasTitle_marEstado}"/>
+                </h:panelGrid>
+                <br /> 
+                <!-- creamos los procesos a realizar -->
+                <h:commandLink action="#{tdiMarcasController.destroyAndView}" value="#{bundle.ViewTdiMarcasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTdiMarcasEditLink}"/>
+                <br />
+                <!-- creamos las acciones para preparar los procesos -->
+                <h:commandLink action="#{tdiMarcasController.prepareCreate}" value="#{bundle.ViewTdiMarcasCreateLink}" style="display: none"/>
+                <br />
+                <h:commandLink action="#{tdiMarcasController.prepareList}" value="#{bundle.ViewTdiMarcasShowAllLink}" style="display: none"/>
+                <!--        <br />
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.ViewTdiMarcasIndexLink}"/>
+                -->
+            </h:form>
+        </ui:define>
+        <!--  Definimos el facelets del menu a utilizar en nuestro template  -->
+        <ui:define name="Menu">
+            <h:form >
+                <p:menu>
+                    <p:submenu label="Opciones">
+                        <p:menuitem action="#{tdiMarcasController.prepareCreate}" value="#{bundle.ViewTdiMarcasCreateLink}"/>
+                        <p:menuitem action="#{tdiMarcasController.prepareList}" value="#{bundle.ViewTdiMarcasShowAllLink}" />
+                        <p:menuitem outcome="/index" value="#{bundle.ViewTdiMarcasIndexLink}"/>
+                    </p:submenu>
+
+                </p:menu>  
+            </h:form>
+        </ui:define> 
+    </ui:composition>
+
+</html>

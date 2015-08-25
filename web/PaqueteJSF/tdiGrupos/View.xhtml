@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTdiGruposTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTdiGruposLabel_gruId}"/>
+                    <h:outputText value="#{tdiGruposController.selected.gruId}" title="#{bundle.ViewTdiGruposTitle_gruId}"/>
+                    <h:outputText value="#{bundle.ViewTdiGruposLabel_gruDescripcion}"/>
+                    <h:outputText value="#{tdiGruposController.selected.gruDescripcion}" title="#{bundle.ViewTdiGruposTitle_gruDescripcion}"/>
+                    <h:outputText value="#{bundle.ViewTdiGruposLabel_gruEstado}"/>
+                    <h:outputText value="#{tdiGruposController.selected.gruEstado}" title="#{bundle.ViewTdiGruposTitle_gruEstado}"/>
+                </h:panelGrid>
+                <br /> <!-- creamos los procesos de edicion y eliminacion -->
+                <h:commandLink action="#{tdiGruposController.destroyAndView}" value="#{bundle.ViewTdiGruposDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTdiGruposEditLink}"/>
+                <br /><!-- realizamos las acciones para preparar los procesos -->
+                <h:commandLink action="#{tdiGruposController.prepareCreate}" value="#{bundle.ViewTdiGruposCreateLink}" style="display: none" />
+                <br />
+                <h:commandLink action="#{tdiGruposController.prepareList}" value="#{bundle.ViewTdiGruposShowAllLink}" style="display: none"/>
+
+
+            </h:form>
+        </ui:define>
+        
+         <!--  Definimos el facelets del menu a utilizar en nuestro template  -->
+        <ui:define name="Menu">
+            <h:form >
+                <p:menu>
+                    <p:submenu label="Opciones">
+                        <p:menuitem action="#{tdiGruposController.prepareCreate}" value="#{bundle.ViewTdiGruposCreateLink}"  />
+                        <p:menuitem action="#{tdiGruposController.prepareList}" value="#{bundle.ViewTdiGruposShowAllLink}"/>
+                        <p:menuitem outcome="/index" value="#{bundle.ViewTdiGruposIndexLink}"/>
+                    </p:submenu>
+
+                </p:menu>  
+            </h:form>
+        </ui:define> 
+    </ui:composition>
+
+</html>
